@@ -4,4 +4,12 @@ import router from "./router";
 
 import "./assets/scss/main.scss";
 
-createApp(App).use(router).mount("#app");
+import { registerGlobalComponents } from "@/untils/import";
+
+const app = createApp(App);
+
+registerGlobalComponents(app);
+
+app.use(router);
+
+app.mount("#app");
