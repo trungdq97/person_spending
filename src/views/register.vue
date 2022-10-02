@@ -13,7 +13,7 @@
               id="fullName"
               class="px-4 py-3 rounded-lg border border-gray-100 mt-1"
               type="text"
-              placeholder="user name"
+              placeholder="Quang Trung"
             />
           </label>
         </div>
@@ -44,7 +44,7 @@
             type="submit"
             class="py-3 text-center w-full bg-primary text-white font-bold rounded-lg"
           >
-            Sign In
+            Sign Up
           </button>
         </div>
       </form>
@@ -56,7 +56,7 @@
           <router-link
             :to="{ name: 'Login', params: {} }"
             class="text-primary font-bold"
-            >Sign Up
+            >Sign In
           </router-link>
         </span>
       </div>
