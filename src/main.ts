@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 
+import "./assets/scss/base/tailwind.css";
 import "./assets/scss/main.scss";
 
 import { registerGlobalComponents } from "@/untils/import";

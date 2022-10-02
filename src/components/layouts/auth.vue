@@ -1,11 +1,17 @@
 <template>
-  <h1>abc</h1>
+  <navigation-brand />
   <slot />
 </template>
 
 <script>
-export default {
+import { defineComponent } from "vue";
+import NavigationBrand from "@/components/NavigationBrand";
+
+export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "auth",
-};
+  components: {
+    NavigationBrand,
+  },
+});
 </script>
