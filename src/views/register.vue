@@ -96,6 +96,7 @@ export default defineComponent({
 
     async function onSubmit() {
       await signup(email.value, password.value, fullName.value);
+      if (!error.value) this.$router.push({ name: "home", params: {} });
     }
 
     return { fullName, email, password, error, isPending, onSubmit };
