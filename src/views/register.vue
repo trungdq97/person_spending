@@ -14,6 +14,7 @@
               class="px-4 py-3 rounded-lg border border-gray-100 mt-1"
               type="text"
               placeholder="Quang Trung"
+              v-model="fullName"
             />
           </label>
         </div>
@@ -25,6 +26,7 @@
               class="px-4 py-3 rounded-lg border border-gray-100 mt-1"
               type="email"
               placeholder="daoquangtrung.97ht@gmail.com"
+              v-model="email"
             />
           </label>
         </div>
@@ -36,18 +38,33 @@
               class="px-4 py-3 rounded-lg border border-gray-100 mt-1"
               type="password"
               placeholder="****************"
+              v-model="password"
             />
           </label>
         </div>
         <div class="row">
           <button
+            v-if="!isPending"
             type="submit"
             class="py-3 text-center w-full bg-primary text-white font-bold rounded-lg"
           >
             Sign Up
           </button>
+          <button
+            v-else
+            type="button"
+            class="py-3 text-center w-full bg-gray-200 text-white font-bold rounded-lg cursor-not-allowed"
+            disabled
+          >
+            Loading....
+          </button>
         </div>
       </form>
+
+      <!-- start: Error -->
+      <div v-if="error" class="text-left text-red mt-4">
+        <span>{{ error }}</span>
+      </div>
 
       <!-- start: Direction -->
       <div class="w-full text-center mt-6">
@@ -65,16 +82,23 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { useSignUp } from "@/services/useSignUp";
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "register",
   setup() {
-    function onSubmit() {
-      return;
+    const { error, isPending, signup } = useSignUp();
+    const fullName = ref("");
+    const email = ref("");
+    const password = ref("");
+
+    async function onSubmit() {
+      await signup(email.value, password.value, fullName.value);
     }
-    return { onSubmit };
+
+    return { fullName, email, password, error, isPending, onSubmit };
   },
 });
 </script>
