@@ -1,5 +1,4 @@
 <template>
-  <h1>xyz</h1>
   <slot />
 </template>
 
