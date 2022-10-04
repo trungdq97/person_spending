@@ -1,17 +1,23 @@
 <template>
   <div class="home">
     <h1>Hello jun</h1>
+    <div class="mt-6" v-if="user">{{ user.displayName }}</div>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+<script>
+import { defineComponent } from "vue";
 
-@Options({
-  components: {
-    HelloWorld,
+import { useUser } from "@/services/useUser";
+
+export default defineComponent({
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "register",
+  setup() {
+    const { getUser } = useUser();
+    const { user } = getUser();
+
+    return { user };
   },
-})
-export default class HomeView extends Vue {}
+});
 </script>
