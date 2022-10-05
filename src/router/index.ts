@@ -1,5 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import { projectAuth } from "@/configs/firebase";
+
+const requireAuth = (to: any, from: any, next: any) => {
+  const user = projectAuth.currentUser;
+
+  if (!user) next({ path: "/login" });
+  else next();
+};
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,9 +19,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/register",
     name: "Register",
     meta: { layout: "auth" },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "register" */ "../views/register.vue"),
   },
@@ -21,9 +26,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/login",
     name: "Login",
     meta: { layout: "auth" },
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/login.vue"),
   },
@@ -32,6 +34,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "profile",
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/profile.vue"),
+    beforeEnter: requireAuth,
   },
   {
     path: "/logout",
