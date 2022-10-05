@@ -33,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/profile.vue"),
   },
+  {
+    path: "/logout",
+    name: "logout",
+    component: () => import("../views/logout.vue"),
+  },
 ];
 
 const router = createRouter({
