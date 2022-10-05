@@ -83,7 +83,7 @@ export default defineComponent({
 
     async function onSubmit() {
       await signIn(email.value, password.value);
-      if (!error.value) this.$router.push({ name: "home", params: {} });
+      if (!error.value) this.$router.push({ name: "profile", params: {} });
     }
     return { email, password, error, isPending, signIn, onSubmit };
   },

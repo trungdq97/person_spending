@@ -36,7 +36,7 @@ export const PROFILE_OPTIONS = [
     name: "Logout",
     icon: "t2ico-logout",
     route: {
-      name: "home",
+      name: "logout",
       params: {},
     },
   },

@@ -1,6 +1,6 @@
 <template>
   <!-- start: Info -->
-  <div class="row">
+  <div class="row" v-if="user">
     <div class="container mx-auto p-8">
       <div class="text-center">
         <div class="w-24 h-24 rounded-full overflow-hidden mx-auto">
@@ -11,9 +11,11 @@
             class="w-full h-auto object-cover"
           />
         </div>
-        <div class="font-bold text-2xl text-primary mt-3">Gwang Jun</div>
+        <div class="font-bold text-2xl text-primary mt-3">
+          {{ user.displayName }}
+        </div>
         <p class="font-semibold text-gray-400 mt-1">
-          daoquangtrung.97ht@gmail.com
+          {{ user.email }}
         </p>
       </div>
     </div>
@@ -58,14 +60,17 @@
 <script>
 import { defineComponent, reactive } from "vue";
 import { PROFILE_OPTIONS } from "@/common/constants";
+import { useUser } from "@/services/useUser";
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "profile",
   setup() {
+    const { getUser } = useUser();
+    const { user } = getUser();
     const profileOptions = reactive(PROFILE_OPTIONS);
 
-    return { profileOptions };
+    return { profileOptions, user };
   },
 });
 </script>
