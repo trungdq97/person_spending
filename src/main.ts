@@ -4,13 +4,20 @@ import router from "./router";
 
 import "./assets/scss/base/tailwind.css";
 import "./assets/scss/main.scss";
+import { projectAuth } from "@/configs/firebase";
 
 import { registerGlobalComponents } from "@/untils/import";
 
-const app = createApp(App);
+let app: any;
 
-registerGlobalComponents(app);
+projectAuth.onAuthStateChanged(() => {
+  if (!app) {
+    app = createApp(App);
 
-app.use(router);
+    registerGlobalComponents(app);
 
-app.mount("#app");
+    app.use(router);
+
+    app.mount("#app");
+  }
+});
